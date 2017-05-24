@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>证书管理</title>
+</head>
+ <style> 
+a{ text-decoration:none} 
+</style>
+<body>
+      <div>
+        <a><b>证书管理</b></a>    
+        <tr>
+        <tr>
+        <p>告警日志</p>
+      
+      			<table border="1">
+			    <tr>
+			        <td>报警信息</td>
+                    <td>时间</td>
+			    </tr>     
+        {%  for e in ret %}
+        
+        	            <tr>
+					<td>{{e.log}}</td>
+					<td>{{e.warndate}}</td>
+      
+        {% endfor %}
+
+      </table>
+        <p><button type="submit"  ><a href="/warnmanage/home/">返回</a></button> </p>
+
+</body>
+</html>

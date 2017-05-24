@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//cert/certhp.py=utf-8
+encoding//cert/public.py=utf-8
+encoding//certhome/certindex.py=utf-8
+encoding//certhome/indexadd.py=utf-8
+encoding//certhome/indexedit.py=utf-8
+encoding//certhome/urls.py=utf-8
+encoding//searchcert/Searchcert.py=utf-8
+encoding//searchcert/urls.py=utf-8
+encoding//warnmanage/checkcert.py=utf-8
+encoding//warnmanage/urls.py=utf-8
+encoding//warnmanage/warnhome.py=utf-8
+encoding//warnmanage/warnloginfo.py=utf-8

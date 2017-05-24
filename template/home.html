@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>证书管理</title>
+</head>
+ <style> 
+a{ text-decoration:none} 
+</style>
+<body>
+      <div>
+        <a><b>证书管理</b></a>    
+      </div>
+       <form action="/cert/add" method="post">
+      <div>
+        <p>支付机构</p>
+        <input type="text" class="form-control" placeholder="输入支付机构" name="certadd" id="certadd">    <button type="submit" style="position:absolute;left:200px;" >新增</button>     
+      </div>
+      <p>{{message}}</p>
+      </form>
+      
+      			<table border="1">
+			    <tr>
+			        <td>支付机构</td>
+			        <td>操作</td>
+			    </tr>
+           
+        {%  for e in ret %}
+        <tr>
+        <td>{{e.id}}.<a href="/cert/{{e.id}}/"  >&nbsp{{e.name}} </a>     </td>
+         <td> <button type="submit"  ><a href="/cert/del/{{e.id}}">删除</a></button></td>
+         
+         </tr>
+        {% endfor %}
+
+      </table>
+        <p><button type="submit"   ><a href="/">返回</a></button> </p>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>证书查询</title>
+</head>
+ <style> 
+a{ text-decoration:none} 
+</style>
+<body>
+      <div>
+        <a><b>证书查询</b></a>    
+      </div>
+       <form action="/searchcert/date/" method="post">
+        <p>查询证书到期时间</p>
+        <p>起始日期: &nbsp<input type="date" class="form-control" style="position:absolute;left:235px;" name="daystart" id="daystart">   </p>
+        <p>结束日期: &nbsp<input type="date" class="form-control" style="position:absolute;left:235px;" name="daystop" id="daystop">   </p>
+        <div style="color: red;margin-left: 180px;">{{message}}</div>
+        <p><button type="submit" style="position:absolute;left:250px;"  >查询</button> <button  type="reset" style="position:absolute;left:330px;"  ><a href="/" class="get">返回</a></button></p>
+        
+       <br> 
+       <br> 
+       <br> 
+       
+        
+       
+        
+        <table border="1">
+			    <tr>
+			        <td>支付机构</td>
+			        <td>商户号	</td>
+			        <td>公钥起始有效期</td>
+			        <td>公钥结束有效期</td>
+			        <td>私钥起始有效期</td>
+			        <td>私钥结束有效期</td>
+			        <td>公钥获取方式	</td>
+			        <td>私钥获取方式	</td>
+			        <td>更新方式</td>
+			        <td>跳转</td>
+			    </tr>
+
+			     
+                
+                 {%  for g,e in ret %}
+		            <tr>
+		             <td>{{g}}</td>
+                     <td>{{e.businessname}}</td>
+					<td>{{e.publickeydaystart}}</td>
+					<td>{{e.publickeydaystop}}</td>
+					<td>{{e.privatekeydaystart}}</td>
+					<td>{{e.privatekeydaystop}}</td>
+					<td>{{e.publicgain}}</td>
+					<td>{{e.privategain}}</td>
+					<td>{{e.update}}</td>
+					<td> <button  type="submit"   ><a href="/cert/{{e.sysid_id}}/" >跳转</a></button></td>
+					
+                    </tr>
+                  {% endfor %}
+			    
+
+			</table>
+  </form>
+</body>
+</html>
+
+
+
