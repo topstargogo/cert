@@ -44,17 +44,14 @@ def GetFormPost(request,FormId):
 
 
 
-def certinfo(request):
-    
-       
-               
-    certmessage =  systeminfo.objects.all()
-    return certmessage
+
 
 def certdetailinfo(request,cert):
     
     
     for i in cert:
+        if i.name == None:
+           i.name = ""
         if i.businessname == None:
            i.businessname = ""
         if i.publickeydaystart == None:
@@ -87,6 +84,8 @@ def indexdetailinfo(request,id):
     
     cert = systemdetail.objects.filter(id=id)
     for i in cert:
+        if i.name == None:
+           i.name = ""        
         if i.businessname == None:
            i.businessname = ""
         if i.publickeydaystart == None:
@@ -115,30 +114,20 @@ def indexdetailinfo(request,id):
     return cert  
 
 
-def delcert(request,id):
-    systemdetail.objects.filter(sysid_id=id).delete()
-    systeminfo.objects.filter(id=id).delete()    
-    ret=certinfo(request)
-    return render(request,'home.html',{'ret':ret})
-def addcert(request):
-    
-    certid = []
-    for a in systeminfo.objects.all():        
-        certid.append(a.id)
-    id = [ i for i in range(1,1000) ]    
-    id = list(set(id)-set(certid))
-       
-    addcert = request.POST.get("certadd")
-    systeminfo.objects.create(id=id[0],name=addcert)
-    return redirect('/cert/info.html')
 
-def indexsave(request,id):
+
+def indexsave(request):
     if request.method == 'POST':
 
 
-        form_key = ['businessname','publickeydaystart','publickeydaystop','privatekeydaystart','privatekeydaystop','publicgain','privategain','update']        
+        form_key = ['id','name','businessname','publickeydaystart','publickeydaystop','privatekeydaystart','privatekeydaystop','publicgain','privategain','update']        
         form_value = GetFormPost(request,form_key)
-        form_value['sysid_id'] = int(id)
+        certid = []
+        for a in systemdetail.objects.all():        
+             certid.append(a.id)
+        id = [ i for i in range(1,1000) ]    
+        id = list(set(id)-set(certid))
+        form_value["id"]=id[0]
         if form_value["publickeydaystart"] == u""  :
              form_value.pop("publickeydaystart")
         if form_value["publickeydaystop"] == u""  :
@@ -149,21 +138,19 @@ def indexsave(request,id):
              form_value.pop("privatekeydaystop")   
         rs = systemdetail(**form_value)
         rs.save()
-        cs = "/cert/%s"%(id)
-        return redirect(cs)
+        
+        return redirect("/cert/info.html")
 
-def indexdel(request,id,delid):
+def indexdel(request,delid):
     systemdetail.objects.filter(id=delid).delete()
-    cs = "/cert/%s"%(id)
-    return redirect(cs)
+    return redirect("/cert/info.html")
 
-def indexeditsave(request,id,editid):
+def indexeditsave(request,editid):
     if request.method == 'POST':
-
-
-        form_key = ['businessname','publickeydaystart','publickeydaystop','privatekeydaystart','privatekeydaystop','publicgain','privategain','update']        
+ 
+ 
+        form_key = ['name','businessname','publickeydaystart','publickeydaystop','privatekeydaystart','privatekeydaystop','publicgain','privategain','update']        
         form_value = GetFormPost(request,form_key)
-        form_value['sysid_id'] = int(id)
         form_value['id'] = int(editid)
         if form_value["publickeydaystart"] == u""  :
              form_value.pop("publickeydaystart")
@@ -173,11 +160,10 @@ def indexeditsave(request,id,editid):
              form_value.pop("privatekeydaystart") 
         if form_value["privatekeydaystop"] == u""  :
              form_value.pop("privatekeydaystop")   
-               
+                
         rs = systemdetail(**form_value)
         rs.save()
-        cs = "/cert/%s"%(id)
-        return redirect(cs)
+        return redirect('/cert/info.html')
     
 def commitdate(request):    
     ret = {}
@@ -195,12 +181,7 @@ def commitdate(request):
         else:            
             certinfo = systemdetail.objects.filter(Q(publickeydaystop__range=(form_value["daystart"],form_value["daystop"]))|Q(privatekeydaystop__range=(form_value["daystart"],form_value["daystop"])))           
             ret=certdetailinfo(request,certinfo)
-            for i in certinfo:
-              
-               c = systeminfo.objects.get(id=i.sysid_id).name
-               b.append(c)
 
-            ret = zip(b,list(ret))
 
             return render(request,'searchcert/searchresult.html',{'ret':ret})
                

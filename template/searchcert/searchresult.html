@@ -36,14 +36,13 @@ a{ text-decoration:none}
 			        <td>公钥获取方式	</td>
 			        <td>私钥获取方式	</td>
 			        <td>更新方式</td>
-			        <td>跳转</td>
 			    </tr>
 
 			     
                 
-                 {%  for g,e in ret %}
+                 {%  for e in ret %}
 		            <tr>
-		             <td>{{g}}</td>
+		             <td>{{e.name}}</td>
                      <td>{{e.businessname}}</td>
 					<td>{{e.publickeydaystart}}</td>
 					<td>{{e.publickeydaystop}}</td>
@@ -52,7 +51,7 @@ a{ text-decoration:none}
 					<td>{{e.publicgain}}</td>
 					<td>{{e.privategain}}</td>
 					<td>{{e.update}}</td>
-					<td> <button  type="submit"   ><a href="/cert/{{e.sysid_id}}/" >跳转</a></button></td>
+					
 					
                     </tr>
                   {% endfor %}

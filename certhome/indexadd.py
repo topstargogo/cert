@@ -5,7 +5,7 @@ from cert.public import *
 
 
 
-def indexadd(request, id):
+def indexadd(request):
     
     
-    return render_to_response("addpage.html", {"id":id})
+    return render_to_response("addpage.html")

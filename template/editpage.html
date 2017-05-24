@@ -11,8 +11,9 @@ a{ text-decoration:none}
       <div>
         <a><b>证书管理</b></a>    
       </div>
-       <form action="/cert/editsave/{{id}}/{{editid}}" method="post">
+       <form action="/cert/editsave/{{editid}}" method="post">
        {%  for e in ret %}
+        <p>支付机构: &nbsp<input type="text" class="form-control" value = "{{e.name}}" style="position:absolute;left:200px;" placeholder="输入支付机构" name="name" id="name">   </p>
         <p>商户号: &nbsp<input type="text" class="form-control" value = "{{e.businessname}}" style="position:absolute;left:200px;" placeholder="输入商户号" name="businessname" id="businessname">   </p>
         <p>公钥起始有效期: &nbsp<input type="date"  class="form-control" value = "{{e.publickeydaystart}}" style="position:absolute;left:235px;"  name="publickeydaystart" id="publickeydaystart" >   </p>
         <p>公钥结束有效期: &nbsp<input type="date" class="form-control" value = "{{e.publickeydaystop}}" style="position:absolute;left:235px;" name="publickeydaystop" id="publickeydaystop">   </p>
@@ -22,7 +23,7 @@ a{ text-decoration:none}
         <p>私钥获取方式: &nbsp<input type="text" class="form-control" value = "{{e.privategain}}" style="position:absolute;left:200px;" placeholder="输入获取方式" name="privategain" id="privategain">   </p>
         <p>更新方式: &nbsp<input type="text" class="form-control"value = "{{e.update}}"  style="position:absolute;left:200px;" placeholder="输入更新方式" name="update" id="update">   </p>
        
-        <p><button type="submit" style="position:absolute;left:250px;"  >确认更新</button> <button  type="reset" style="position:absolute;left:330px;"  ><a href="/cert/{{id}}/" class="get">返回</a></button></p>
+        <p><button type="submit" style="position:absolute;left:250px;"  >确认更新</button> <button  type="reset" style="position:absolute;left:330px;"  ><a href="/cert/info.html" class="get">返回</a></button></p>
         {% endfor %}
   </form>
 </body>

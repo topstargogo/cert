@@ -12,7 +12,7 @@ a{ text-decoration:none}
         <a><b>证书管理</b></a>    
       </div>
       <br>
-       <button type="submit" style="position:absolute;left:45px;" ><a href="/cert/indexadd/{{id}}">新增</a></button>  
+       <button type="submit" style="position:absolute;left:45px;" ><a href="/cert/indexadd/">新增</a></button>  
        <br>
 		<ol>
 		<li><a>账户信息</a></li>
@@ -20,6 +20,7 @@ a{ text-decoration:none}
 		
 			<table border="1">
 			    <tr>
+			        <td>支付机构</td>
 			        <td>商户号	</td>
 			        <td>公钥起始有效期</td>
 			        <td>公钥结束有效期</td>
@@ -35,6 +36,7 @@ a{ text-decoration:none}
                 {%  for e in ret %}
  
 		            <tr>
+		            <td>{{e.name}}</td>
 					<td>{{e.businessname}}</td>
 					<td>{{e.publickeydaystart}}</td>
 					<td>{{e.publickeydaystop}}</td>
@@ -43,7 +45,7 @@ a{ text-decoration:none}
 					<td>{{e.publicgain}}</td>
 					<td>{{e.privategain}}</td>
 					<td>{{e.update}}</td>
-					<td> <button  type="submit"   ><a href="/cert/indexedit/{{id}}/{{e.id}}/" >编辑</a></button>&nbsp&nbsp<button  type="submit"   ><a href="/cert/indexdel/{{id}}/{{e.id}}/" >删除</a></button></td>
+					<td> <button  type="submit"   ><a href="/cert/indexedit/{{e.id}}/" >编辑</a></button>&nbsp&nbsp<button  type="submit"   ><a href="/cert/indexdel/{{e.id}}/" >删除</a></button></td>
                     </tr>
                   {% endfor %}
 			    
@@ -51,7 +53,7 @@ a{ text-decoration:none}
 			</table>
 			
 	    <br>
-		<li><a href="/cert/info.html">返回</a></li>
+		<li><a href="/">返回</a></li>
 		</ol>
       <br>
 

@@ -7,7 +7,9 @@ from certhome.models import *
 from cert.public import *
 
     
-def certindexinfo(request, id):
-    certinfo = systemdetail.objects.filter(sysid_id=id)               
-    ret = certdetailinfo(request, certinfo)         
-    return render(request, 'certindex.html', {'ret':ret, 'id':id})
+def certindexinfo(request):
+
+    certinfo = systemdetail.objects.all().order_by("name")         
+    ret = certdetailinfo(request, certinfo)
+
+    return render(request, 'certindex.html', {'ret':ret})

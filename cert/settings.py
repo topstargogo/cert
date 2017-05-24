@@ -87,8 +87,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cert',
         'USER':'root',
-        'PASSWORD':'461He.com',
-        'HOST':'192.168.222.120',
+        'PASSWORD':'123456',
+        'HOST':'192.168.81.137',
         'PORT':'3306'
     }
 }
@@ -138,21 +138,6 @@ CRONJOBS = [
 
 ]
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG' if DEBUG else 'INFO',
-        },
-    },
-}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 

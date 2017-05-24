@@ -5,7 +5,7 @@ from cert.public import *
 
 
 
-def indexedit(request, id, editid):
+def indexedit(request,  editid):
     
     ret = indexdetailinfo(request, editid)
-    return render(request, 'editpage.html', {'ret':ret, 'id':id, "editid":editid})
+    return render(request, 'editpage.html', {'ret':ret,  "editid":editid})
